@@ -1,0 +1,17 @@
+name: Unit Test Workflow
+
+on:
+  pull_request:
+    branches: [ dev ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macOS-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Unit Test
+        run: xcodebuild test -scheme Basic-Car-Maintenance -only-testing Basic-Car-Maintenance-Tests -sdk iphonesimulator -destination "platform=iOS Simulator,name=Any iOS Simulator Device"
